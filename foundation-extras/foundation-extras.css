@@ -1,0 +1,25 @@
+
+/*
+	DO NOT ALTER CLASS NAMES OR CLASS POSITIONS 
+		--- if in doubt, ask steff ---
+*/
+
+/* this is applied to <html> when the window is < CONFIG.smallScreenPxBreakpoint wide (defined in foundation-extras.js) */
+html.mobile {  }
+
+
+/*
+	give extra padding to a row with class .extra-side-padding
+	or the child rows within a column classed with .extra-side-padding
+ */
+.row.extra-side-padding,
+.columns.extra-side-padding > .row {
+	padding-left:10px;
+	padding-right:10px;
+}
+.mobile .row.extra-side-padding,
+.mobile .columns.extra-side-padding > .row {
+	padding-left:5px;
+	padding-right:5px;
+}
+

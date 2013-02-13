@@ -1,0 +1,52 @@
+
+select {
+	padding:3px;
+    background-color: white;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+    color: rgba(0, 0, 0, 0.75);
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    height: 30px;
+    width: 100%;
+}
+
+img {
+	vertical-align: middle;
+}
+
+.panel {
+	background:#ccc;
+	text-align:left;
+}
+.hidden {
+	visibility:hidden;
+}
+
+.center {
+	text-align:center;
+}
+
+button, input[type=button], input[type=submit], .button {
+	cursor:pointer;
+	cursor:hand;
+}
+
+.right {
+	text-align:right; /* foundation override */
+}
+
+form.custom label[for] {
+	display:inline;
+	padding:0 5px;
+}
+
+.stretch {
+	width:100%;
+}
+
+.mobile .mobile-bottom-padding {
+	padding-bottom:10px;
+}
