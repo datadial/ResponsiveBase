@@ -26,7 +26,7 @@
 			dim quantity_drop as dropdownList = item.findControl("quantity")
 			dim number_for_sale as integer = basket.lines(i).item.product.numberavailableforsale
 
-			for x as integer = 1 to iif(number_for_sale > 10, 10, number_for_sale)
+			for x as integer = 1 to iif(number_for_sale > 20, 20, number_for_sale)
 				quantity_drop.items.add(new listItem(x, x))
 			next
 			
