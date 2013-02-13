@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="VB" ClassName="Payment" Inherits="ddEcomm.Checkout.PaymentCheckoutStageControl, ddEcomm.Core" %>
 <%@ Register TagPrefix="dd" TagName="order" src="~/controls/order.ascx" %>
+<%@ Register TagPrefix="dd" TagName="additionalPaymentFields" src="~/controls/checkout/additionalPaymentFields.ascx" %>
 <%@ Import Namespace="ddEcomm.Customers" %>
 <%@ Import Namespace="ddEcomm.Transactions" %>
 <%@ Import Namespace="ddEcomm.Orders" %>
@@ -79,6 +80,8 @@
                 error_messages = "Payment was taken, but there was a problem finalising your order.<br />Technical services have been notified."
                 SendErrorEmail("Order Finalise Fail - Order ID:" & order.ID, result.Exception.ToString)
             End If
+
+			additionalPaymentFields.processCustomerInput()
         Else
             error_messages = "Payment was taken, but there was a problem saving your payment details.<br />Technical services have been notified."
             SendErrorEmail("Transaction Save Fail - Order ID:" & order.ID, result.Exception.ToString)
@@ -125,7 +128,7 @@
 		}
 	</style>
 
-	<dd:order ID="Order1" runat="server" />
+	<dd:order runat="server" />
 	
 	<div id="delivery_address">
 		<h2>Delivering to:</h2>
@@ -138,6 +141,8 @@
         <asp:Literal ID="BillingAddress" runat="server" />
 		<a href="?stage=address">Change Address</a>
 	</div>
+	
+	<dd:additionalPaymentFields id="additionalPaymentFields" runat="server" />
 	
 	<div style="clear:both;"><asp:Literal ID="errors" runat="server" /></div>
 	
