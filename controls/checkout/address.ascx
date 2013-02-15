@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="VB" Inherits="ddEcomm.Checkout.CheckoutStageControl, ddEcomm.Core" %>
 <%@ Register TagPrefix="dd" TagName="address_fields" src="~/controls/address_fields.ascx" %>
+<%@ Register TagPrefix="dd" TagName="additionalAddressFields" src="~/controls/checkout/additionalAddressFields.ascx" %>
 <%@ Import Namespace="ddEcomm.Customers" %>
 
 <script runat="server">
@@ -30,7 +31,7 @@
         basket.deliveryAddress = customer.deliveryAddress
         basket.billingAddress = customer.billingAddress
 		
-        Return True
+        Return additionalAddressFields.processCustomerInput
     End Function
 	
 	Sub add_address(ByVal sender As Object, ByVal e As EventArgs)
@@ -235,4 +236,6 @@
 			<div class="four mobile-two columns"><asp:Button ID="delete_address_button" Text="Delete Address" OnClick="delete_address" class="alert button stretch" runat="server" /></div>
 		</div>
 	</div>
+	
+	<dd:additionalAddressFields id="additionalAddressFields" runat="server" />
 	

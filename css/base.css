@@ -11,6 +11,7 @@ select {
     font-size: 14px;
     height: 30px;
     width: 100%;
+	margin: 0 0 12px;
 }
 
 img {
@@ -32,6 +33,12 @@ img {
 button, input[type=button], input[type=submit], .button {
 	cursor:pointer;
 	cursor:hand;
+}
+.small.button {
+	padding: 9px 14px;
+}
+input.small.button[type=button], input.small.button[type=submit] {
+    padding: 8px 14px 7px;
 }
 
 .right {
