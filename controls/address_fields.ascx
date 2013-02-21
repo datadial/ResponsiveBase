@@ -3,7 +3,7 @@
 
 <script runat="server">
 	
-	Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs)
+	Sub Page_Init(ByVal sender As Object, ByVal e As EventArgs)
 		if not page.isPostback then
 			country.datasource = services.location.getCountries
 			country.dataTextField = "Name"
@@ -43,18 +43,20 @@
 		line4.text = address.line4
 		postcode.text = address.postcode
 		country.selectedValue = address.country.ID
-		
 		init_states(address.country.ID, address.stateID)
 	End Sub
 	
 	Function init_states(country_id as integer, state_id as integer)
-		state.datasource = services.location.getStates.getByCountryID(country_id)
-		state.dataTextField = "Name"
-		state.dataValueField = "ID"
-		state.databind
-		if state.items.count > 0 then
-			if state_id > 0 then state.selectedValue = state_id
-			state_selection.attributes.add("style", "display:block;")
+		dim country = services.location.getCountries.getByID(country_id)
+		if country.hasStates then
+			state.datasource = services.location.getStates.getByCountryID(country_id)
+			state.dataTextField = "Name"
+			state.dataValueField = "ID"
+			state.databind
+			if state.items.count > 0 then
+				if state_id > 0 then state.selectedValue = state_id
+				state_selection.attributes.add("style", "display:block;")
+			end if
 		end if
 	End Function
 	
@@ -124,13 +126,10 @@
 		</div>
 	</div>
 	
-	
 	<div id="state_selection" runat="server" class="row" style="display:none;">
-		<div style="margin-top:12px;">
-			<div class="four mobile-two columns"><label class="inline">State</label></div>
-			<div class="eight mobile-two columns">
-				<asp:DropDownList ID="state" class="no-custom" runat="server" />
-			</div>
+		<div class="four mobile-two columns"><label class="inline">State</label></div>
+		<div class="eight mobile-two columns">
+			<asp:DropDownList ID="state" class="no-custom" runat="server" />
 		</div>
 	</div>
 
