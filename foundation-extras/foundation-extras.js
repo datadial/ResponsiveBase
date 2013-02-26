@@ -5,8 +5,7 @@ $.extend({
 			smallScreenPxBreakpoint:	768,
 			onSmallScreen: 				function(){},
 			offSmallScreen: 			function(){},
-			smallScreenCssClass: 		'mobile'
-
+			smallScreenCssClass: 		'mobile' /* highly recommended to leave as-is */
 		}, options);
 		
 		var html = $('html');

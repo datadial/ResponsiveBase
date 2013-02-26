@@ -171,6 +171,40 @@
 			}, options));
 			
 			return this;
+		},
+		disableClick: function(message){
+			var self = $(this);
+			
+			switch(self[0].nodeName.toLowerCase()){
+				case 'input':
+					self
+						.data('old-text', self.val())
+						.val(message || 'Please wait...')
+					break;
+				default:
+					self
+						.data('old-text', self.html())
+						.html(message || 'Please wait&hellip;')
+					break;
+			}
+			
+			setTimeout(function(){
+				self.attr('disabled', true);
+			}, 10);
+		},
+		enableClick: function(){
+			var self = $(this);
+			
+			switch(self[0].nodeName.toLowerCase()){
+				case 'input':
+					self.val(self.data('old-text'))
+					break;
+				default:
+					self.html(self.data('old-text'))
+					break;
+			}
+			
+			self.attr('disabled', false)
 		}
 	});
 
