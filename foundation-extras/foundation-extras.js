@@ -12,7 +12,7 @@ $.extend({
 		var html = $('html');
 		
 		function handleResize(){
-			var width = $(document).width();
+			var width = $(window).width();
 	
 			if(width < config.smallScreenPxBreakpoint){
 				if(!html.hasClass(config.smallScreenCssClass)){
