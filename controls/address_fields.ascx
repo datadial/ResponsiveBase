@@ -10,8 +10,6 @@
 			country.dataValueField = "ID"
 			country.databind
 			country.selectedValue = services.location.getDefaultCountry.ID
-		else
-			init_states(request.form(country.uniqueID), request.form(state.uniqueID))
 		end if
 	End Sub
 	
@@ -28,8 +26,10 @@
 		
 		if services.location.getStates.getByCountryID(address.countryID).count > 0 then
 			address.stateID = request.form(state.uniqueID)
+			state_selection.attributes.add("style", "display:block;")
 		else
 			address.stateID = -1
+			state_selection.attributes.add("style", "display:none;")
 		end if
 	End Sub
 	
@@ -48,6 +48,7 @@
 	
 	Function init_states(country_id as integer, state_id as integer)
 		dim country = services.location.getCountries.getByID(country_id)
+		if country is nothing then throw new exception("no country with id " & country_id)
 		if country.hasStates then
 			state.datasource = services.location.getStates.getByCountryID(country_id)
 			state.dataTextField = "Name"
