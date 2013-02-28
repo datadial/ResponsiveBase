@@ -157,7 +157,10 @@
 		}
 		#basket-footer .row {
 			padding-top:0;
-			padding-bottom:3px;
+			padding-bottom:0;
+		}
+		#basket-lines select.basket-quantity {
+			margin:0;
 		}
 	</style>
 	
@@ -312,11 +315,6 @@
 				</div>
 			</div>
 		</div>
-		
-		<% if EcommRegistry.CurrentCurrency.id <> Currency.DefaultCurrency.id then %>
-			<div class="panel"><strong>Important:</strong> Your payment will be processed in UK Pounds (<%=basket.totalGrossPrice.convertTo(Currency.DefaultCurrency).toHtml%>).</div>
-			<br />
-		<% end if %>
 	</div>
 	
 	<div id="no_items" runat="server" visible="false">

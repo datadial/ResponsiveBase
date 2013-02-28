@@ -22,16 +22,20 @@
 	End Sub
 	
     Public Overrides Function ProcessCustomerInput() As Boolean
-        customer.addresses.getByID(New GUID(delivery_address.selectedValue)).isDefaultDelivery = True
-        customer.addresses.getByID(New GUID(billing_address.selectedValue)).isDefaultBilling = True
-        If Not customer.isGuest Then services.customers.saveCustomer(customer)
-		
-        ' update the basket addresses
-        Dim basket = services.basket.getCurrentBasket
-        basket.deliveryAddress = customer.deliveryAddress
-        basket.billingAddress = customer.billingAddress
-		
-        Return additionalAddressFields.processCustomerInput
+		if additionalAddressFields.processCustomerInput() then
+			customer.addresses.getByID(New GUID(delivery_address.selectedValue)).isDefaultDelivery = True
+			customer.addresses.getByID(New GUID(billing_address.selectedValue)).isDefaultBilling = True
+			If Not customer.isGuest Then services.customers.saveCustomer(customer)
+			
+			' update the basket addresses
+			Dim basket = services.basket.getCurrentBasket
+			basket.deliveryAddress = customer.deliveryAddress
+			basket.billingAddress = customer.billingAddress
+			
+			return true
+		else
+			return false
+		end if
     End Function
 	
 	Sub add_address(ByVal sender As Object, ByVal e As EventArgs)

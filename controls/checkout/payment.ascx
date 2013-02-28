@@ -32,7 +32,7 @@
     End Sub
     
     Public Overrides Function ProcessCustomerInput() As Boolean
-        If _PaymentProviderHandler.Validate() Then
+        If _PaymentProviderHandler.Validate() and additionalPaymentFields.processCustomerInput() Then
             ' create order then tell the payment provider control to create a transaction
             Dim error_messages As String = ""
             Dim order As IOrder = _Basket.GetOrder
@@ -80,8 +80,6 @@
                 error_messages = "Payment was taken, but there was a problem finalising your order.<br />Technical services have been notified."
                 SendErrorEmail("Order Finalise Fail - Order ID:" & order.ID, result.Exception.ToString)
             End If
-
-			additionalPaymentFields.processCustomerInput()
         Else
             error_messages = "Payment was taken, but there was a problem saving your payment details.<br />Technical services have been notified."
             SendErrorEmail("Transaction Save Fail - Order ID:" & order.ID, result.Exception.ToString)
